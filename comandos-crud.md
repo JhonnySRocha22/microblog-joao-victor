@@ -12,7 +12,7 @@
 
 
 ### INSERT na tabela de usuários
-
+```sql
 INSERT INTO usuarios (nome, email, senha, tipo)
 VALUES(
     'João Victor S da Rocha', 
@@ -20,8 +20,8 @@ VALUES(
     '4567jvsr',
     'admin'
 );
-
-
+```
+```sql
 INSERT INTO usuarios(nome, email, senha, tipo)
 VALUES(
 'Fabio Barbosa',
@@ -39,9 +39,9 @@ VALUES(
 'marreta',
 'editor'
 );
-
+```
 ### SELECT na tabela de usuários
-
+```sql
 SELECT * FROM usuarios;
 
 
@@ -50,23 +50,23 @@ SELECT nome, email FROM usuarios;
 
 
 SELECT nome, email FROM usuarios WHERE tipo = 'admin';
-
+```
 ### UPDATE em dados da tabela de usuários
-
+```sql
 UPDATE usuarios SET tipo = 'admin' WHERE id = 4;
 
 -- Obs: NUNCA ESQUÇA DE PASSAR UMA CONDIÇÃO PARA O UPDATE!
 
-
+```
 ### DELETE em dados da tabela de usuários
-
+```sql
 DELETE FROM usuarios WHERE id = 2;
 
 -- Obs: NUNCA ESQUÇA DE PASSAR UMA CONDIÇÃO PARA O DELETE!
 
-
+```
 ### INSERT na tabela de noticias
-
+```sql
 INSERT INTO noticias(titulo, resumo, texto, imagem, usuario_id)
 VALUES(
     'Descoberto Oxigênio em Vênus',
@@ -95,7 +95,7 @@ VALUES(
     'sol.jpg',
     1
 );
-
+```
 
 
 
@@ -103,7 +103,7 @@ VALUES(
 
 ### SELECT COM JOIN (CONSULTA COM JUNÇÃO DE TABELAS)
 
-
+```sql
 -- Especificamos o nome da coluna junto com o nome da tabela
 SELECT 
 noticias.data, 
@@ -119,7 +119,7 @@ ON noticias.usuario_id = usuarios.id
 -- opicional (ordenação/classificação pela data)
 -- DESC indica ordem decrescente (maisvrecentes vem primeiro)
 ORDER BY data DESC;
-
+```
 
 
 

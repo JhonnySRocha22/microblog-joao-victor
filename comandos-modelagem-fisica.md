@@ -6,7 +6,7 @@ CREATE DATABASE microblog_joao_victor  CHARACTER SET utf8mb4;
 
 ## Criar tabela de usuários
 
-
+```sql
 CREATE TABLE usuarios(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
@@ -31,3 +31,4 @@ CREATE TABLE noticias(
 ALTER TABLE noticias
         ADD CONSTRAINT fk_noticias_usuarios
         FOREIGN KEY (usuario_id) REFERENCES usuarios(id);
+        ```
