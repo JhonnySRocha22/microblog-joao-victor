@@ -20,7 +20,7 @@ if ( !$conexao ) {
    die("Deu ruim: ".mysqli_connect_error());
 } else {
     /* Senão, a conexão foi feita com sucesso! */
-   echo "Beleza, conectado!";
+   echo "Foi cadastrado com sucesso!";
 }
 
 
