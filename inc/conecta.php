@@ -18,10 +18,10 @@ mysqli_set_charset($conexao, "utf8");
 if ( !$conexao ) {
     /* PARE a aplicação e mostre uma mensagem de erro */
    die("Deu ruim: ".mysqli_connect_error());
-} else {
-    /* Senão, a conexão foi feita com sucesso! */
-   echo "Foi cadastrado com sucesso!";
-}
+} // else {
+    //Senão, a conexão foi feita com sucesso! */
+   //echo "Usuário cadastrado com sucesso!";
+//} 
 
 
 
