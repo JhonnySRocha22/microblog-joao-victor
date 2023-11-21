@@ -5,7 +5,7 @@ require_once "../inc/cabecalho-admin.php";
 $id = $_GET['id'];
 
 // Chamando a função e guardando o retorno dela
-$dados = lerUmUsuario($conexao, $id);
+$usuario = lerUmUsuario($conexao, $id);
 ?>
 
 
@@ -20,25 +20,33 @@ $dados = lerUmUsuario($conexao, $id);
 
 			<div class="mb-3">
 				<label class="form-label" for="nome">Nome:</label>
-				<input class="form-control" type="text" id="nome" name="nome" required>
+				<input value="<?=$usuario['nome']?>" class="form-control" type="text" id="nome" name="nome" required>
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="email">E-mail:</label>
-				<input class="form-control" type="email" id="email" name="email" required>
+				<input value="<?=$usuario['email']?>" class="form-control" type="email" id="email" name="email" required>
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="senha">Senha:</label>
-				<input class="form-control" type="password" id="senha" name="senha" placeholder="Preencha apenas se for alterar">
+				<input  class="form-control" type="password" id="senha" name="senha" placeholder="Preencha apenas se for alterar">
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="tipo">Tipo:</label>
 				<select class="form-select" name="tipo" id="tipo" required>
 					<option value=""></option>
-					<option value="editor">Editor</option>
-					<option value="admin">Administrador</option>
+
+
+					<option 
+					<?php if($usuario["tipo"] === "editor") echo "selected" ?>
+					value="editor">Editor</option>
+
+
+					<option <?php if($usuario["tipo"] === "admin") echo "selected"; ?> value="admin">Administrador</option>
+
+
 				</select>
 			</div>
 			
