@@ -16,13 +16,20 @@ if(isset($_POST['atualizar'])){
 
 	/* Lógica da Senha
 	Se o campo senha estiver vazio OU a senha digitada for igual à senha que já existe no banco de dados, então significa que o usuario NÃO ALTEROU A SENHA. Portanto, devemos MANTER a senha existente 
-	
-	Caso contrario, pegamos a senha nova e a CODIFICAMOS antes de mandar para o banco.
-
-
-
-
 	*/
+if( empty($_POST['senha']) || password_verify($_POST['senha'], $usuario['senha'] ) ){
+$senha = $usuario['senha']; //mantemos a mesma
+}else {
+	/*Caso contrario, pegamos a senha nova e a CODIFICAMOS antes de mandar para o banco.
+	*/
+	$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+}
+
+atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo);
+
+header("location:usuarios.php");
+
+
 }
 ?>
 
