@@ -1,5 +1,11 @@
 <?php 
+require_once "../inc/funcoes-usuarios.php";
 require_once "../inc/cabecalho-admin.php";
+// Pegando o valor do parâmetro id vindo da URL
+$id = $_GET['id'];
+
+// Chamando a função e guardando o retorno dela
+$dados = lerUmUsuario($conexao, $id);
 ?>
 
 
