@@ -24,11 +24,11 @@ $senha = $usuario['senha']; //mantemos a mesma
 	*/
 	$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 }
-
+// Chamamos a função e passamos os dados
 atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo);
 
+// Redirecionamos para a página de usuarios
 header("location:usuarios.php");
-
 
 }
 ?>
