@@ -13,11 +13,11 @@ if( isset($_POST['inserir'])){
 	/* Capturando dados do arquivo de imagem/foto */
 	$imagem = $_FILES['imagem'];
 
-echo "<pre>";
-var_dump($imagem);
-echo "</pre>";
-}
+	/* Enviando o arquivo para o servidor */
+	upload($imagem);
 
+
+}
 ?>
 
 

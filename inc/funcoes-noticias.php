@@ -11,8 +11,26 @@ function inserirNoticia($conexao){
 
 
 /* Usada em noticia-insere.php e noticia-atualiza.php */
-function upload(){
+function upload($arquivo){
     
+    $tiposValidos = [
+        "imagem.png", "imagem.jpeg", 
+        "imagem/gif", "imagem/svg+xml"
+    ];
+
+    if (!in_array($arquivo['type'], $tiposValidos)) {
+        echo "<script>
+        alert('Formato inválido!'); history.back();
+        </script>";
+        exit;
+    }
+
+
+    $nome = $arquivo['name'];
+    $temporario = $arquivo['tmp_name'];
+    $destino = "../imagens/".$nome;
+    move_uploaded_file($temporario, $destino);
+
 } // fim upload
 
 
