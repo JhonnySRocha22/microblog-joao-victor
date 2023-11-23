@@ -15,10 +15,14 @@ require_once "../inc/cabecalho-admin.php";
                 <i class="bi bi-person"></i> <br>
                 Meu perfil
             </a>
+            <!-- Se o usuário logado for do tipo 'admin' -->
+            <?php if($_SESSION['tipo'] == 'admin' ){ ?>
+            <!-- Então ele verá o item abaixo no menu -->
 			<a class="btn btn-dark bg-gradient btn-lg" href="usuarios.php">
                 <i class="bi bi-people"></i> <br>
                 Gerenciar usuários
             </a>
+            <?php } ?>
             <a class="btn btn-dark bg-gradient btn-lg" href="noticias.php">
                 <i class="bi bi-newspaper"></i> <br>
                 Gerenciar notícias
