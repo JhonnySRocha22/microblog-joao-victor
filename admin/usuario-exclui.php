@@ -1,5 +1,5 @@
 <?php
-require "funcoes-sessao.php";
+require "../inc/funcoes-sessao.php";
 verificaAcesso();
 
 //Verificando se o usuario pode entrar nesta página.
