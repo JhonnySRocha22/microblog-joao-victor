@@ -2,10 +2,11 @@
 require "conecta.php";
 
 /* Usada em noticia-insere.php */
-function inserirNoticia($conexao){
+function inserirNoticia($conexao, $titulo, $texto, $resumo, $imagem, $usuarioId){
     
+    $sql = "INSERT INTO noticias(titulo, texto, resumo, imagem, usuario_id)VALUES ('$titulo', '$texto', '$resumo', '$imagem', '$usuarioId')";
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 } // fim inserirNoticia
 
@@ -39,8 +40,8 @@ function upload($arquivo){
 
     // Movendo o arquivo da área temporaria para a pasta final
     move_uploaded_file($temporario, $destino);
-/* 
-    echo "<script>
+    
+    /*echo "<script>
     alert('Noticia cadastrada com sucesso!!'); location = 'noticias.php';
     </script>";
     exit; */
