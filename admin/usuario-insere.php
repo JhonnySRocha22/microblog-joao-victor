@@ -4,6 +4,11 @@ require_once "../inc/cabecalho-admin.php";
 //Importando as funções do arquivo
 require "../inc/funcoes-usuarios.php";
 
+//Verificando se o usuario pode entrar nesta página.
+verificaTipo();
+
+
+
 if( isset($_POST['inserir'])){
 
 	//PEGAR os dados preenchidos

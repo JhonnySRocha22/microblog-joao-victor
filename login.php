@@ -11,7 +11,7 @@ if (isset($_GET['acesso_negado'])) {
 } elseif (isset($_GET['saiu'])) {
 	$mensagem = "Você saiu do sistema";
 } elseif (isset($_GET['campos_obrigatorios'])) {
-	$mensagem = "Preencha Email e Senha!!";
+	$mensagem = "Preencha seu Email e Senha!!";
 }
 
 
