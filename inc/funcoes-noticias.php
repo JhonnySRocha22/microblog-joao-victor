@@ -13,11 +13,14 @@ function inserirNoticia($conexao){
 /* Usada em noticia-insere.php e noticia-atualiza.php */
 function upload($arquivo){
     
+    /* VALIDAÇÃO BACK-END */
+    // Lista de formatos suportados pelo site
+    // (precisa ser igual ao que está no HTML)
     $tiposValidos = [
-        "imagem.png", "imagem.jpeg", 
-        "imagem/gif", "imagem/svg+xml"
+        "image/png", "image/jpeg", 
+        "image/gif", "image/svg+xml"
     ];
-
+// Verificando se o tipo de arquivo NÃO É um dos suportados
     if (!in_array($arquivo['type'], $tiposValidos)) {
         echo "<script>
         alert('Formato inválido!'); history.back();
@@ -25,11 +28,22 @@ function upload($arquivo){
         exit;
     }
 
-
+    // Obtendo o nome/extenção do arquivo
     $nome = $arquivo['name'];
+
+    //Obtendo informações de acesso temporario
     $temporario = $arquivo['tmp_name'];
+
+    //Definindo para onde vai a imagem e com qual nome vai
     $destino = "../imagens/".$nome;
+
+    // Movendo o arquivo da área temporaria para a pasta final
     move_uploaded_file($temporario, $destino);
+/* 
+    echo "<script>
+    alert('Noticia cadastrada com sucesso!!'); location = 'noticias.php';
+    </script>";
+    exit; */
 
 } // fim upload
 
