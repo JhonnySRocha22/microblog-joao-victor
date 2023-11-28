@@ -83,10 +83,25 @@ function formataData(){
 
 
 /* Usada em noticia-atualiza.php */
-function lerUmaNoticia($conexao){
+function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
     
+    if ($tipoUsuario == "admin") {
+        /* Pode carregar dados de qualquer noticia de qualquer pessoa */
+        $sql = "SELECT * FROM noticias WHERE id = $idNoticia";
+    } else {
+        /* Pode carregar dados de uqalquer noticia DELE [EDITOR] APENAS */
+        $sql = "SELECT * FROM noticias
+        WHERE id = $idNoticia
+        AND usuario_id = $idUsuario";
+        
+    }
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    /* Executando o comando SQL e guardando o resultado */
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+    // Retornando UM ÚNICO array com dados da noticia
+    return mysqli_fetch_assoc($resultado);
+
 
 } // fim lerUmaNoticia
 
