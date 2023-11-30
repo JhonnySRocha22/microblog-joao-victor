@@ -164,12 +164,21 @@ function lerTodasAsNoticias($conexao){
 
 
 /* Usada em noticia.php */
-function lerDetalhes($conexao){
+function lerDetalhes($conexao, $id){
     
+    $sql = "SELECT 
+            noticias.*, 
+            usuarios.nome AS autor
+            FROM noticias JOIN usuarios
+            ON noticias.usuario_id = usuarios.id
+           WHERE noticias.id = $id";
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+        
+ $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
-} // fim lerDetalhes
+ return mysqli_fetch_assoc($resultado);
+
+}; // fim lerDetalhes
 
 
 /* Usada em resultados.php */
@@ -177,4 +186,4 @@ function busca($conexao){
     
     // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
-} // fim busca
+}; // fim busca
