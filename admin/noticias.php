@@ -46,7 +46,7 @@ $listadeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 <?php foreach($listadeNoticias as $noticia ){?>
 					<tr>
                         <td> <?=$noticia['titulo']?> </td>
-                        <td> <?=$noticia['data']?>  </td>
+                        <td> <?=formataData($noticia['data'])?>  </td>
 
 						<?php if($tipoUsuario == 'admin') { ?>
                         <td> <?=$noticia['autor']?> </td>
