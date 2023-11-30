@@ -107,19 +107,39 @@ function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
 
 
 /* Usada em noticia-atualiza.php */
-function atualizarNoticia($conexao){
+function atualizarNoticia($conexao, $titulo, $texto, $resumo, $imagem, $idNoticia, $idUsuario, $tipoUsuario){
     
+    if($tipoUsuario == 'admin'){
+        // SQL do admin: pode atualizar QUALQUER notícia
+        $sql = "UPDATE noticias SET
+                    titulo = '$titulo', texto = '$texto',
+                    resumo = '$resumo', imagem = '$imagem'
+                WHERE id = $idNoticia";
+    } else {
+        // SQL do editor: pode atualizar SOMENTE as dele
+        $sql = "UPDATE noticias SET
+                    titulo = '$titulo', texto = '$texto',
+                    resumo = '$resumo', imagem = '$imagem'
+                WHERE id = $idNoticia 
+                    AND usuario_id = $idUsuario";
+    }
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 } // fim atualizarNoticia
 
 
 /* Usada em noticia-exclui.php */
-function excluirNoticia($conexao){
+function excluirNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
+    if($tipoUsuario == 'admin'){
+        $sql = "DELETE FROM noticias WHERE id = $idNoticia";
+    } else {
+        $sql = "DELETE FROM noticias 
+                WHERE id = $idNoticia 
+                AND usuario_id = $idUsuario";
+    }
 
-
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 } // fim excluirNoticia
 
@@ -132,9 +152,13 @@ function excluirNoticia($conexao){
 
 /* Usada em index.php */
 function lerTodasAsNoticias($conexao){
+    $sql = "SELECT titulo, resumo, imagem, id
+            FROM noticias ORDER BY data DESC";
     
+    $resultado = mysqli_query($conexao, $sql) 
+                or die(mysqli_error($conexao));
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
 } // fim lerTodasAsNoticias
 
