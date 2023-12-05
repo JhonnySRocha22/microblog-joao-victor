@@ -4,7 +4,7 @@ require "inc/cabecalho.php";
 
 
 // Capturando o que foi buscado/digitado no campo
-$termodigitado = $_GET['busca'];
+$termodigitado = mysqli_real_escape_string($conexao, $_GET['busca']);
 
 // Executando a busca no banco de dados
 $resultadoDaBusca = busca($conexao, $termodigitado);
