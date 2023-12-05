@@ -1,5 +1,41 @@
 <?php 
+require_once "../inc/funcoes-usuarios.php";
 require_once "../inc/cabecalho-admin.php";
+
+
+// Pegando o valor do parâmetro id vindo da SESSÃO
+$id = $_SESSION['id'];
+
+// Chamando a função e guardando o retorno dela
+$usuario = lerUmUsuario($conexao, $id);
+
+// Verificando se o formulrio foi acionado
+if(isset($_POST['atualizar'])){
+	//Capturar os dados
+	$nome = $_POST['nome'];
+	$email = $_POST['email'];
+	$tipo = $_SESSION['tipo'];
+
+	/* Lógica da Senha
+	Se o campo senha estiver vazio OU a senha digitada for igual à senha que já existe no banco de dados, então significa que o usuario NÃO ALTEROU A SENHA. Portanto, devemos MANTER a senha existente 
+	*/
+if( empty($_POST['senha']) || password_verify($_POST['senha'], $usuario['senha'] ) ){
+$senha = $usuario['senha']; //mantemos a mesma
+}else {
+	/*Caso contrario, pegamos a senha nova e a CODIFICAMOS antes de mandar para o banco.
+	*/
+	$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+}
+// Chamamos a função e passamos os dados
+atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo);
+
+// Atualize na sessão atual o nome da pessoa (caso mude)
+$_SESSION['nome'] = $nome;
+
+// Redirecionamos para a página de usuarios
+header("location:index.php");
+
+}
 ?>
 
 
@@ -14,12 +50,12 @@ require_once "../inc/cabecalho-admin.php";
 
 			<div class="mb-3">
 				<label class="form-label" for="nome">Nome:</label>
-				<input class="form-control" type="text" id="nome" name="nome" required>
+				<input value="<?=$usuario['nome']?>" class="form-control" type="text" id="nome" name="nome" required>
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="email">E-mail:</label>
-				<input class="form-control" type="email" id="email" name="email" required>
+				<input  value="<?=$usuario['email']?>" class="form-control" type="email" id="email" name="email" required>
 			</div>
 
 			<div class="mb-3">
